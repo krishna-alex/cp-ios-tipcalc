@@ -17,13 +17,31 @@ class ViewController: UIViewController {
     
    override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+        let defaults = UserDefaults.standard
+        let tipValue =
+            defaults.float(forKey: "defaultTip")
+    
+        var tipValueIndex = 0
+        switch tipValue {
+        case 0.18:
+            tipValueIndex = 0
+        case 0.2:
+            tipValueIndex = 1
+        case 0.25:
+            tipValueIndex = 2
+        default:
+            tipValueIndex = 0
+        }
+        self.tipControl.selectedSegmentIndex = tipValueIndex
+    
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 
     @IBAction func onTap(_ sender: Any) {
         view.endEditing(true)
