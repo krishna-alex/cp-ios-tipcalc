@@ -15,6 +15,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var billText: UITextField!
     @IBOutlet weak var tipControl: UISegmentedControl!
     
+    @IBOutlet weak var setSplitNumStepper: UIStepper!
+    
+    @IBOutlet weak var splitNumLabel: UILabel!
+    
    override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -35,6 +39,9 @@ class ViewController: UIViewController {
         }
         self.tipControl.selectedSegmentIndex = tipValueIndex
     
+        billText.becomeFirstResponder()
+            //keyboard is always visible and the bill amount is always the first responder
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,14 +53,29 @@ class ViewController: UIViewController {
     @IBAction func onTap(_ sender: Any) {
         view.endEditing(true)
     }
+    
+    @IBAction func setSplitValue(_ sender: Any) {
+        let splitNum = setSplitNumStepper.value;
+        splitNumLabel.text = String(Int(splitNum))
+    }
+    
+    /*@IBAction func setSplitValue(_ sender: Any) {
+       
+        /*let splitNum = splitValueStepper.value;
+        splitValueLabel.text = String(format:"%f", splitNum)*/
+    }*/
 
+    
     @IBAction func calculateTip(_ sender: Any) {
         
         let tipPercentages = [0.18, 0.2, 0.25]
         
         let bill = Double(billText.text!) ?? 0
-        let tip = bill * tipPercentages[tipControl.selectedSegmentIndex]
-        let total = bill + tip
+        let spltNum = setSplitNumStepper.value
+        let spltBill = bill / spltNum
+        
+        let tip = spltBill * tipPercentages[tipControl.selectedSegmentIndex]
+        let total = spltBill + tip
         
         tipLabel.text = String(format: "$%.2f", tip)
         totalLabel.text = String(format: "$%.2f", total)
