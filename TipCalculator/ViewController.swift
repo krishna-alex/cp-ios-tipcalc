@@ -14,14 +14,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var billText: UITextField!
     @IBOutlet weak var tipControl: UISegmentedControl!
-    
     @IBOutlet weak var setSplitNumStepper: UIStepper!
-    
     @IBOutlet weak var splitNumLabel: UILabel!
+    @IBOutlet weak var settingsButton: UIBarButtonItem!
+    
+    
     
    override func viewDidLoad() {
         super.viewDidLoad()
     
+       
         let defaults = UserDefaults.standard
         let tipValue =
             defaults.float(forKey: "defaultTip")
@@ -59,12 +61,6 @@ class ViewController: UIViewController {
         splitNumLabel.text = String(Int(splitNum))
     }
     
-    /*@IBAction func setSplitValue(_ sender: Any) {
-       
-        /*let splitNum = splitValueStepper.value;
-        splitValueLabel.text = String(format:"%f", splitNum)*/
-    }*/
-
     
     @IBAction func calculateTip(_ sender: Any) {
         
