@@ -23,11 +23,20 @@ class ViewController: UIViewController {
     @IBOutlet var mainView: UIView!
     
     
+    func formatInLocalCurrency(amount: Double) -> (String)
+    {
+    let _currencyFormatter : NumberFormatter = NumberFormatter()
+    _currencyFormatter.numberStyle = NumberFormatter.Style.currency
+    _currencyFormatter.locale = NSLocale.current
+    return(_currencyFormatter.string(from: NSNumber.init(value: amount)))!
+        
+    }
    
     override func viewDidLoad() {
         super.viewDidLoad()
     
-       
+        billText.placeholder = formatInLocalCurrency(amount: 0)
+        
         let defaults = UserDefaults.standard
         let tipValue =
             defaults.float(forKey: "defaultTip")
@@ -95,8 +104,9 @@ class ViewController: UIViewController {
         let tip = spltBill * tipPercentages[tipControl.selectedSegmentIndex]
         let total = spltBill + tip
         
-        tipLabel.text = String(format: "$%.2f", tip)
-        totalLabel.text = String(format: "$%.2f", total)
+        tipLabel.text = formatInLocalCurrency(amount: tip)
+        totalLabel.text = formatInLocalCurrency(amount: total)
+        
     }
 }
 
