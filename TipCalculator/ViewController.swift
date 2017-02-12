@@ -18,9 +18,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var splitNumLabel: UILabel!
     @IBOutlet weak var settingsButton: UIBarButtonItem!
     
+    @IBOutlet weak var resultView: UIView!
+    
+    @IBOutlet var mainView: UIView!
     
     
-   override func viewDidLoad() {
+   
+    override func viewDidLoad() {
         super.viewDidLoad()
     
        
@@ -43,7 +47,25 @@ class ViewController: UIViewController {
     
         billText.becomeFirstResponder()
             //keyboard is always visible and the bill amount is always the first responder
-
+        self.mainView.alpha = 0
+        self.resultView.alpha = 1
+        UIView.animate(withDuration: 0.4, animations: {
+            // This causes first view to fade in and second view to fade out
+            self.mainView.alpha = 1
+            self.resultView.alpha = 0
+        })
+    }
+    
+    
+    @IBAction func appearResult(_ sender: Any) {
+        UIView.animate(withDuration: 0.4, animations: {
+            if self.billText.text!.isEmpty {
+                self.resultView.alpha = 0
+            }
+            else {
+                self.resultView.alpha = 1
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {

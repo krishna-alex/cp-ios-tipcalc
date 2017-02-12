@@ -55,6 +55,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 <connections>
+                                    <action selector="appearResult:" destination="BYZ-38-t0r" eventType="editingChanged" id="zSt-tD-djX"/>
                                     <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="editingChanged" id="gSw-Dm-JuL"/>
                                 </connections>
                             </textField>
@@ -127,6 +128,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="billText" destination="9G8-VD-S62" id="udb-LQ-AVF"/>
+                        <outlet property="mainView" destination="8bC-Xf-vdC" id="CKT-kp-0E6"/>
+                        <outlet property="resultView" destination="CO2-bM-gDa" id="vcZ-iz-Tbv"/>
                         <outlet property="setSplitNumStepper" destination="yxg-GY-AAr" id="Eav-PK-4tP"/>
                         <outlet property="settingsButton" destination="Ugq-3S-1Xc" id="qqx-A1-bd1"/>
                         <outlet property="splitNumLabel" destination="Yyr-Mg-BL3" id="qLP-Gd-EB3"/>
