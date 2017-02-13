@@ -179,6 +179,7 @@
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.18312240909999999" green="0.20708882880000001" blue="0.28065368950000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="jck-Ig-qnl"/>
                     <connections>

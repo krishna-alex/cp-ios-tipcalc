@@ -33,6 +33,9 @@ class SettingsViewController: UIViewController {
         
         self.defaltTipControl.selectedSegmentIndex = tipValueIndex
         
+       // navigationItem.leftBarButtonItem?.title = "Back"
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
     }
 
     override func didReceiveMemoryWarning() {
