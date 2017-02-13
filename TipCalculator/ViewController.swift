@@ -25,22 +25,20 @@ class ViewController: UIViewController {
     
     func formatInLocalCurrency(amount: Double) -> (String)
     {
+        // function to set the locale specific currency
     let _currencyFormatter : NumberFormatter = NumberFormatter()
     _currencyFormatter.numberStyle = NumberFormatter.Style.currency
     _currencyFormatter.locale = NSLocale.current
     return(_currencyFormatter.string(from: NSNumber.init(value: amount)))!
         
     }
-   
-    override func viewDidLoad() {
-        super.viewDidLoad()
     
-        billText.placeholder = formatInLocalCurrency(amount: 0)
-        
+    func tipPercentile()
+    {
+        //functin to set the tip percentage
         let defaults = UserDefaults.standard
-        let tipValue =
-            defaults.float(forKey: "defaultTip")
-    
+        let tipValue = defaults.float(forKey: "defaultTip")
+        
         var tipValueIndex = 0
         switch tipValue {
         case 0.18:
@@ -53,16 +51,52 @@ class ViewController: UIViewController {
             tipValueIndex = 0
         }
         self.tipControl.selectedSegmentIndex = tipValueIndex
+        
+    }
+    
+    func calcTip()
+    {
+        // function to calculate tip and total amount
+        let tipPercentages = [0.18, 0.2, 0.25]
+        
+        let bill = Double(billText.text!) ?? 0
+        let spltNum = setSplitNumStepper.value
+        let spltBill = bill / spltNum
+        
+        let tip = spltBill * tipPercentages[tipControl.selectedSegmentIndex]
+        let total = spltBill + tip
+        
+        tipLabel.text = formatInLocalCurrency(amount: tip)
+        totalLabel.text = formatInLocalCurrency(amount: total)
+    }
+    
+    
+   
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
+        billText.placeholder = formatInLocalCurrency(amount: 0)
+        
+        navigationController?.navigationBar.barTintColor = UIColor.init(displayP3Red: 0.24, green: 0.27, blue: 0.36, alpha: 1.0)
+        navigationController?.navigationBar.barStyle = UIBarStyle.black
+        
+        tipPercentile()
     
         billText.becomeFirstResponder()
             //keyboard is always visible and the bill amount is always the first responder
         self.mainView.alpha = 0
         self.resultView.alpha = 1
         UIView.animate(withDuration: 0.4, animations: {
-            // This causes first view to fade in and second view to fade out
             self.mainView.alpha = 1
             self.resultView.alpha = 0
         })
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated);
+        tipPercentile()
+        calcTip()
+        
     }
     
     
@@ -94,19 +128,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func calculateTip(_ sender: Any) {
-        
-        let tipPercentages = [0.18, 0.2, 0.25]
-        
-        let bill = Double(billText.text!) ?? 0
-        let spltNum = setSplitNumStepper.value
-        let spltBill = bill / spltNum
-        
-        let tip = spltBill * tipPercentages[tipControl.selectedSegmentIndex]
-        let total = spltBill + tip
-        
-        tipLabel.text = formatInLocalCurrency(amount: tip)
-        totalLabel.text = formatInLocalCurrency(amount: total)
-        
+        calcTip()
     }
 }
 
