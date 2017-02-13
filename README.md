@@ -6,3 +6,7 @@
  * Ability to split a bill
  * Locale specific currency
  
+## Experience demo
+
+![Animated Screenshot](/TipCalculatorDemo.gif?raw=true "Animated Screenshot")
+ 
