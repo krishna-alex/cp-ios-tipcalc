@@ -22,6 +22,8 @@ class ViewController: UIViewController {
     
     @IBOutlet var mainView: UIView!
     
+    let defaults = UserDefaults.standard
+    
     
     func formatInLocalCurrency(amount: Double) -> (String)
     {
@@ -36,7 +38,7 @@ class ViewController: UIViewController {
     func tipPercentile()
     {
         //functin to set the tip percentage
-        let defaults = UserDefaults.standard
+        
         let tipValue = defaults.float(forKey: "defaultTip")
         
         var tipValueIndex = 0
@@ -57,6 +59,7 @@ class ViewController: UIViewController {
     func calcTip()
     {
         // function to calculate tip and total amount
+        
         let tipPercentages = [0.18, 0.2, 0.25]
         
         let bill = Double(billText.text!) ?? 0
@@ -70,15 +73,42 @@ class ViewController: UIViewController {
         totalLabel.text = formatInLocalCurrency(amount: total)
     }
     
+    func resumeState()
+    {
+        //Remember the bill amount across app restarts. After an extended period of time(10min), clear the state.
+        
+        let resumeTime = NSDate()
+        print( "resumeTime \(resumeTime)")
+       
+        if let prevTime = defaults.value(forKey: "TimeStamp")
+        {
+            let interval = Int(resumeTime.timeIntervalSince(prevTime as! Date))
+            print( "interval \(interval)")
+
+            if interval > 600
+            {
+                billText.text=""
+                resultView.alpha = 0
+                
+            }
+        }
+    }
     
+   
    
     override func viewDidLoad() {
         super.viewDidLoad()
     
         billText.placeholder = formatInLocalCurrency(amount: 0)
         
+        NotificationCenter.default.addObserver(self, selector:#selector(ViewController.resumeState), name:
+        NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        //Remember the bill amount across app restarts. After an extended period of time(10min), clear the state.
+        
         navigationController?.navigationBar.barTintColor = UIColor.init(displayP3Red: 0.24, green: 0.27, blue: 0.36, alpha: 1.0)
         navigationController?.navigationBar.barStyle = UIBarStyle.black
+        
+        
         
         tipPercentile()
     
@@ -92,7 +122,9 @@ class ViewController: UIViewController {
         })
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
+        UIView.setAnimationsEnabled(false)
         super.viewDidAppear(animated);
         tipPercentile()
         calcTip()
