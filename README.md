@@ -5,6 +5,8 @@
  * Configurable default percent
  * Ability to split a bill
  * Locale specific currency
+ * Remember the bill amount across app restarts. After an extended period of time in background, clear the value.
+
  
 ## Experience demo
 
