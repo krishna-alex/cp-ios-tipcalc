@@ -6,6 +6,7 @@
  * Ability to split a bill
  * Locale specific currency
  * Remember the bill amount across app restarts. After an extended period of time in background, clear the value.
+ * Light/ Dark theme selection
 
  
 ## Experience demo
