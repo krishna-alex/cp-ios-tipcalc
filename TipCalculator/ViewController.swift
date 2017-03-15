@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     
     let defaults = UserDefaults.standard
     
-    
+ 
     func formatInLocalCurrency(amount: Double) -> (String)
     {
         // function to set the locale specific currency
@@ -98,7 +98,10 @@ class ViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        mainView.backgroundColor = StyleTheme.Theme.loadTheme().bgcolor
+        resultView.backgroundColor = StyleTheme.Theme.loadTheme().fgcolor
+        
         billText.placeholder = formatInLocalCurrency(amount: 0)
         
         NotificationCenter.default.addObserver(self, selector:#selector(ViewController.resumeState), name:
@@ -126,6 +129,10 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         UIView.setAnimationsEnabled(false)
         super.viewDidAppear(animated);
+        mainView.backgroundColor = StyleTheme.Theme.loadTheme().bgcolor
+        resultView.backgroundColor = StyleTheme.Theme.loadTheme().fgcolor
+        
+
         tipPercentile()
         calcTip()
         

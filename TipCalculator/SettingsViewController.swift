@@ -11,10 +11,14 @@ import UIKit
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var defaltTipControl: UISegmentedControl!
+    @IBOutlet weak var themeControl: UISegmentedControl!
     let defaults = UserDefaults.standard
+    
+    @IBOutlet var settingsView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        settingsView.backgroundColor = StyleTheme.Theme.loadTheme().bgcolor
         
         let tipValue =
             defaults.float(forKey: "defaultTip")
@@ -32,9 +36,23 @@ class SettingsViewController: UIViewController {
         }
         
         self.defaltTipControl.selectedSegmentIndex = tipValueIndex
+        if let currentTheme = defaults.string(forKey: "theme")
+        {
+            if currentTheme == "Light" {
+                self.themeControl.selectedSegmentIndex = 0
+            }
+            else {
+            
+                self.themeControl.selectedSegmentIndex = 1
+            }
+        }
+        else {
         
-       // navigationItem.leftBarButtonItem?.title = "Back"
+            self.themeControl.selectedSegmentIndex = 1
+        }
+        
         navigationController?.navigationBar.tintColor = UIColor.white
+        
         
     }
 
@@ -42,19 +60,6 @@ class SettingsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-     @IBAction func defaultTipSelection(_ sender: Any) {
-     }
-    */
     
    
     @IBAction func setDefaultTip(_ sender: Any) {
@@ -64,6 +69,15 @@ class SettingsViewController: UIViewController {
         defaults.set(selectedTipValue, forKey: "defaultTip")
         defaults.synchronize()
         
+    }
+    
+    @IBAction func setTheme(_ sender: Any) {
+        let themes = StyleTheme.Theme.availableThemes
+        let selectedTheme = themes[themeControl.selectedSegmentIndex]
+        defaults.set(selectedTheme, forKey: "theme")
+        defaults.synchronize()
+        settingsView.backgroundColor = StyleTheme.Theme.loadTheme().bgcolor
+        print(selectedTheme)
     }
     
 

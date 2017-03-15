@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6B2711471E5021000037166F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BEAF2161E4D05EB00C1D7E0 /* ViewController.swift */; };
 		6B27114A1E5031DF0037166F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BEAF21B1E4D05EB00C1D7E0 /* Assets.xcassets */; };
+		6B27114C1E7901AC0037166F /* StyleTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B27114B1E7901AC0037166F /* StyleTheme.swift */; };
 		6BEAF2151E4D05EB00C1D7E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BEAF2141E4D05EB00C1D7E0 /* AppDelegate.swift */; };
 		6BEAF21A1E4D05EB00C1D7E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BEAF2181E4D05EB00C1D7E0 /* Main.storyboard */; };
 		6BEAF21F1E4D05EB00C1D7E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BEAF21D1E4D05EB00C1D7E0 /* LaunchScreen.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B27114B1E7901AC0037166F /* StyleTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleTheme.swift; sourceTree = "<group>"; };
 		6BEAF2111E4D05EB00C1D7E0 /* TipCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TipCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BEAF2141E4D05EB00C1D7E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6BEAF2161E4D05EB00C1D7E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				6BEAF21B1E4D05EB00C1D7E0 /* Assets.xcassets */,
 				6BEAF21D1E4D05EB00C1D7E0 /* LaunchScreen.storyboard */,
 				6BEAF2201E4D05EB00C1D7E0 /* Info.plist */,
+				6B27114B1E7901AC0037166F /* StyleTheme.swift */,
 			);
 			path = TipCalculator;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				6B2711471E5021000037166F /* ViewController.swift in Sources */,
 				6BEAF2151E4D05EB00C1D7E0 /* AppDelegate.swift in Sources */,
 				6BEAF2431E4D276B00C1D7E0 /* SettingsViewController.swift in Sources */,
+				6B27114C1E7901AC0037166F /* StyleTheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
